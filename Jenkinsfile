@@ -16,7 +16,8 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo "Deploying container..."
-                sh 'docker run -d --name simple-app-container -p 8082:3000 simple-app:latest || true'
+                sh 'docker rm -f simple-app-container || true'
+                sh 'docker run -d --name simple-app-container -p 8082:3000 simple-app:latest'
             }
         }
     }
